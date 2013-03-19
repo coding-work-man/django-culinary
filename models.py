@@ -1,4 +1,4 @@
-from django.db.models import *
+from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.core.mail import send_mail
@@ -31,16 +31,15 @@ class IngredientAmount(models.Model):
     amount_description = models.CharField(max_length=100) # e.g, `ml.` or `kg`
 
 class Post(BaseModel):
-    title = CharField(max_length=60)
+    title = models.CharField(max_length=60)
     preview_picture = models.CharField(max_length=100) # Link for preview
     cuisine = CountryField() # e.g. `Russian` or `Japan`
-    category = models.ForeignKey(Category) # e.g `Main dishes` or `Cocktails`
     yields = models.PositiveSmallIntegerField() # e.g `Two big burgers`
     cooktime = models.PositiveSmallIntegerField() # e.g `About 30 minutes`
     description = models.TextField() # e.g `My favorite guilty pleasure breakfast`
-    content = models.TextField() # Content in the form of list of steps 
+    body = models.TextField() # Content in the form of list of steps 
     serving_suggestions = models.TextField() # e.g `Serve immediately`
-    created = DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-created"]
@@ -50,10 +49,10 @@ class Post(BaseModel):
 
 
 class Comment(BaseModel):
-    author = CharField(max_length=60, blank=True)
-    body = TextField()
-    post = ForeignKey(Post, related_name="comments",  blank=True, null=True)
-    created = DateTimeField(auto_now_add=True)
+    author = models.CharField(max_length=60, blank=True)
+    body = models.TextField()
+    post = models.ForeignKey(Post, related_name="comments",  blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return "%s: %s" % (self.post, self.body[:60])
