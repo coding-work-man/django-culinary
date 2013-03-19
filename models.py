@@ -2,7 +2,7 @@ from django.db.models import *
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.core.mail import send_mail
-from dbe.shared.utils import *
+from utils import *
 
 notify = False
 
@@ -25,7 +25,7 @@ class Comment(BaseModel):
     created = DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return u"%s: %s" % (self.post, self.body[:60])
+        return "%s: %s" % (self.post, self.body[:60])
 
     def save(self, *args, **kwargs):
         """Email when a comment is added."""
