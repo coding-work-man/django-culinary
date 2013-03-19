@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dbe.culinary.models import *
+from culinary.models import *
 
 
 class PostAdmin(admin.ModelAdmin):

@@ -1,6 +1,4 @@
-# Imports {{{
 from collections import OrderedDict, Callable
-from string import join
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -10,7 +8,6 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.db.models import Model, Manager
 from django import forms
-# }}}
 
 class UserForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -57,7 +54,7 @@ class Container:
     def __iter__(self)          : return iter(self.__dict__)
     def __getitem__(self, k)    : return self.__dict__[k]
     def __str__(self)           : return str(self.__dict__)
-    def __repr__(self)          : return u"Container: <%s>" % repr(self.__dict__)
+    def __repr__(self)          : return "Container: <%s>" % repr(self.__dict__)
     def __unicode__(self)       : return unicode(self.__dict__)
     def __nonzero__(self)       : return len(self.__dict__)
     def pop(self, *args)        : return self.__dict__.pop(*args)

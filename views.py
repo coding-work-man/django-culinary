@@ -1,10 +1,10 @@
 import time
 from calendar import month_name
-from dbe.culinary.models import *
-from dbe.culinary.forms import *
-from dbe.shared.utils import *
-from dbe.mcbv.list import ListView
-from dbe.mcbv.list_custom import DetailListCreateView
+from culinary.models import *
+from culinary.forms import *
+from culinary.utils import *
+from culinary.mcbv.list import ListView
+from culinary.mcbv.list_custom import DetailListCreateView
 
 class PostView(DetailListCreateView):
     """Show post, associated comments and an 'add comment' form."""
@@ -13,13 +13,13 @@ class PostView(DetailListCreateView):
     modelform_class = CommentForm
     related_name = "comments"
     fk_attr = "post"
-    template_name = "culinary/post.html"
+    template_name = "post.html"
 
 
 class Main(ListView):
     list_model    = Post
     paginate_by   = 10
-    template_name = "culinary/list.html"
+    template_name = "list.html"
 
     def months(self):
         """Make a list of months to show archive links."""

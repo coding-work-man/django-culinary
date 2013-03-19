@@ -1,5 +1,5 @@
 from django.forms import *
-from dbe.culinary.models import *
+from culinary.models import *
 
 class CommentForm(ModelForm):
     class Meta:
