@@ -1,6 +1,7 @@
 from django.forms import *
 from culinary.models import *
 
+
 class CommentForm(ModelForm):
     class Meta:
         model = Comment

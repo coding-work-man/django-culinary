@@ -6,6 +6,7 @@ from culinary.utils import *
 from culinary.mcbv.list import ListView
 from culinary.mcbv.list_custom import DetailListCreateView
 
+
 class PostView(DetailListCreateView):
     """Show post, associated comments and an 'add comment' form."""
     detail_model = Post
@@ -17,8 +18,8 @@ class PostView(DetailListCreateView):
 
 
 class Main(ListView):
-    list_model    = Post
-    paginate_by   = 10
+    list_model = Post
+    paginate_by = 10
     template_name = "list.html"
 
     def months(self):
@@ -30,7 +31,7 @@ class Main(ListView):
         first_year = first.created.year
         first_month = first.created.month
         months = list()
-        for year in range(current_year, first_year-1, -1):
+        for year in range(current_year, first_year - 1, -1):
             start, end = 12, 0
             if year == current_year:
                 start = current_month
@@ -41,9 +42,11 @@ class Main(ListView):
                     months.append((year, month, month_name[month]))
         return months
 
+
 class ArchiveMonth(Main):
     paginate_by = None
 
     def get_list_queryset(self):
         year, month = self.args
-        return Post.obj.filter(created__year=year, created__month=month).order_by("created")
+        return Post.obj.filter(created__year=year,
+                                created__month=month).order_by("created")

@@ -7,27 +7,31 @@ from culinary.countries import CountryField
 
 notify = False
 
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=100)
+
     def __unicode__(self):
         return self.name
+
 
 class IngredientAmount(models.Model):
     def __str__(self):
         return ('%s: %s' % (self.ingredient.name, self.amount))
     ingredient = models.ForeignKey(Ingredient)
-    amount = models.CharField(max_length=100) # e.g, `250 ml.` or `1 kg`'
+    amount = models.CharField(max_length=100)  # e.g, `250 ml.` or `1 kg`'
+
 
 class Post(BaseModel):
     title = models.CharField(max_length=60)
-    preview_picture = models.CharField(max_length=100) # Link for preview
-    cuisine = CountryField() # e.g. `Russian` or `Japan`
-    yields = models.PositiveSmallIntegerField() # e.g `Two big burgers`
-    cooktime = models.PositiveSmallIntegerField() # e.g `About 30 minutes`
-    description = models.TextField() # e.g `My favorite guilty pleasure breakfast`
-    ingredients = models.ForeignKey(IngredientAmount) # e.g `Fish`
-    body = models.TextField() # Content in the form of list of steps 
-    serving_suggestions = models.TextField() # e.g `Serve immediately`
+    preview_picture = models.CharField(max_length=100)  # Link for preview
+    cuisine = CountryField()  # e.g. `Russian` or `Japan`
+    yields = models.PositiveSmallIntegerField()  # e.g `Two big burgers`
+    cooktime = models.PositiveSmallIntegerField()  # e.g `About 30 minutes`
+    description = models.TextField()  # e.g `My favorite breakfast`
+    ingredients = models.ForeignKey(IngredientAmount)  # e.g `Fish`
+    body = models.TextField()  # Content in the form of list of steps
+    serving_suggestions = models.TextField()  # e.g `Serve immediately`
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -40,7 +44,8 @@ class Post(BaseModel):
 class Comment(BaseModel):
     author = models.CharField(max_length=60, blank=True)
     body = models.TextField()
-    post = models.ForeignKey(Post, related_name="comments",  blank=True, null=True)
+    post = models.ForeignKey(Post, related_name="comments",
+                            blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
