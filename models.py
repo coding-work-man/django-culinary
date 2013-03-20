@@ -7,18 +7,8 @@ from culinary.countries import CountryField
 
 notify = False
 
-class DRYModel(models.Model):
-    def __str__(self):
-        return self.name
+class Ingredient(models.Model):
     name = models.CharField(max_length=100)
-
-    class Meta:
-        abstract = True # Abstract model for all objects
-
-class Category(DRYModel):
-    pass
-
-class Ingredient(DRYModel):
     def __unicode__(self):
         return self.name
 
@@ -43,7 +33,7 @@ class Post(BaseModel):
     class Meta:
         ordering = ["-created"]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
