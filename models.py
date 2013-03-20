@@ -19,16 +19,14 @@ class Category(DRYModel):
     pass
 
 class Ingredient(DRYModel):
-    pass
-
-class IngredientGroup(DRYModel):
-    ingredients = models.ManyToManyField(Ingredient, through='IngredientAmount') # List of ingredients
+    def __unicode__(self):
+        return self.name
 
 class IngredientAmount(models.Model):
+    def __str__(self):
+        return ('%s: %s' % (self.ingredient.name, self.amount))
     ingredient = models.ForeignKey(Ingredient)
-    group = models.ForeignKey(IngredientGroup)
-    amount = models.CharField(max_length=100) # e.g, `10 min` or `1.5 hour`
-    amount_description = models.CharField(max_length=100) # e.g, `ml.` or `kg`
+    amount = models.CharField(max_length=100) # e.g, `250 ml.` or `1 kg`'
 
 class Post(BaseModel):
     title = models.CharField(max_length=60)

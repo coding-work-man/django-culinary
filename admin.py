@@ -1,6 +1,9 @@
 from django.contrib import admin
 from culinary.models import *
 
+class IngredientAmountInline(admin.TabularInline):
+    model = IngredientAmount
+    extra = 0
 
 class PostAdmin(admin.ModelAdmin):
     search_fields = ["title"]
@@ -11,3 +14,6 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Category)
+admin.site.register(Ingredient)
+admin.site.register(IngredientAmount)
