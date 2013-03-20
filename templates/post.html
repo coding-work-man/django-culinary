@@ -5,7 +5,16 @@
         <div class="title">{{ post.title }}</div>
         <ul>
             <div class="time">{{ post.created }}</div>
+        <hr />
+        {% for ingredient in post.ingredients %}
+            <div class="ingredient">{{ ingredient.ingredient }}, {{ ingredient.amount }}{{ ingredient.amount_description }}</div>
+        {% endfor %}
+        </hr>
+            <div class="cuisine">{{ post.cuisine }}</div>
+            <div class="yields">{{ post.yields }}</div>
+            <div class="cooktime">{{ post.cooktime }}</div>
             <div class="body">{{ post.body|linebreaks }}</div>
+            <div class="serving_suggestions">{{ post.serving_suggestions }}</div>
         </ul>
 
         <hr />
