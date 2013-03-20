@@ -37,6 +37,7 @@ class Post(BaseModel):
     yields = models.PositiveSmallIntegerField() # e.g `Two big burgers`
     cooktime = models.PositiveSmallIntegerField() # e.g `About 30 minutes`
     description = models.TextField() # e.g `My favorite guilty pleasure breakfast`
+    ingredients = models.ForeignKey(IngredientAmount) # e.g `Fish`
     body = models.TextField() # Content in the form of list of steps 
     serving_suggestions = models.TextField() # e.g `Serve immediately`
     created = models.DateTimeField(auto_now_add=True)
