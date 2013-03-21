@@ -21,10 +21,12 @@
         <div id="menu">
             {% block nav-global %}
 
-                <h3>MyBlog</h3>
+                <h3><a href="/">Culinary blog</a></h3>
                 {% if user.is_staff %}
                     <a href="{% url 'admin:index' %}">Admin</a>
-                    <a href="#">Add post</a>
+                    <a href="#">Add recipe</a>
+                    <a href="#">Add gallery</a>
+
                 {% endif %}
 
             {% endblock %}
