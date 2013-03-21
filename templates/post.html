@@ -2,15 +2,15 @@
 {% block content %}
     <div class="main">
 
-        <div class="title">{{ post.title }}</div>
+        <div class="title">Recipe Of {{ post.title }}</div>
         <ul>
-            <div class="time">{{ post.created }}</div>
+            <div class="cuisine">Cuisine: {{ post.cuisine }}</div>
+            <div class="yields">Yields: {{ post.yields }} person(-s)</div>
+            <div class="cooktime">Cooktime: {{ post.cooktime }}</div>
         <hr />
-            <div class="cuisine">{{ post.cuisine }}</div>
-            <div class="yields">{{ post.yields }}</div>
-            <div class="cooktime">{{ post.cooktime }}</div>
-            <div class="body">{{ post.body|linebreaks }}</div>
-            <div class="serving_suggestions">{{ post.serving_suggestions }}</div>
+            <div class="body">Recipe:<br />{{ post.body|linebreaks }}</div>
+            <div class="serving_suggestions">Serving suggestions:<br />{{ post.serving_suggestions }}</div>
+            <div class="time">{{ post.created }}</div>
         </ul>
 
         <hr />
